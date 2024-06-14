@@ -8,8 +8,12 @@ import Home from './Home'
 import { View, Button } from 'react-native';
 import PreencherProntuarioTela from './PreencherProntuarioTela';
 import RelatorioEvolucaoTela from './RelatorioEvolucaoTela';
+import RelatoriosTela from './RelatoriosTela';
 import { DrawerItem, CloseButton,FecharTexto } from "./styles"; 
+import AtendimentosTela from './AtendimentosTela';
+import Detalhepaciente from './Detalhespaciente';
 import * as Font from 'expo-font';
+import { Linking } from 'react-native';
 import { useFonts } from "expo-font";
 
 
@@ -22,23 +26,8 @@ const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
   
-  function AtendimentosTela({ navigation }) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button onPress={() => navigation.goBack()} title="Go back home" />
-      </View>
-    );
-  }
-  function RelatoriosTela({ navigation }) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          onPress={() => navigation.goBack()}
-          title="Go to notifications"
-        />
-      </View>
-    );
-  }
+ 
+
   
   function SuporteTela({ navigation }) {
     return (
@@ -68,7 +57,7 @@ const Drawer = createDrawerNavigator();
         <DrawerItem title="Home" onPress={() => navigation.navigate('HomeScreen')} />
         <DrawerItem title="Meus Atendimentos" onPress={() => navigation.navigate('Meus Atendimentos')} />
         <DrawerItem title="Relatorio de Paciente" onPress={() => navigation.navigate('Relatorio de Paciente')} />
-        <DrawerItem title="Suporte" onPress={() => navigation.navigate('Suporte')} />
+        <DrawerItem title="Suporte" onPress={() => Linking.openURL('https://wa.me/5561998738838')}/>
         <DrawerItem title="Relatorio de Evolucao Medica" onPress={() => navigation.navigate('Relatorio de Evolucao Medica')} />
         <DrawerItem title="Enviar Ficha de Estagio" onPress={() => navigation.navigate('Enviar Ficha de Estagio')} />
         <DrawerItem title="Preencher Prontuario" onPress={() => navigation.navigate('Preencher Prontuario')} />
@@ -157,6 +146,11 @@ export default function App() {
                 <Stack.Screen 
                     name="Atendimentos" 
                     component={AtendimentosTela} 
+                    options={{ headerShown: false }} 
+                />
+                <Stack.Screen 
+                    name="Detalhespaciente" 
+                    component={Detalhepaciente} 
                     options={{ headerShown: false }} 
                 />
 

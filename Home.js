@@ -1,9 +1,21 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { Linking,Modal } from 'react-native';
 import {Viewazul, Viewbranco,Viewtopo,Viewbotao, Botaoopcao ,Opcaoimage,Textohome,Logoiesgo ,Textofisio,Botaoservico, Textobotao,Imagembotao,Textohomebranco,Imagemperfil} from './styles';
+import { useState } from "react";
 
 export default function Home() {
+    const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation();
+    const openModal = (appointment) => {
+        setSelectedAppointment(appointment);
+        setModalVisible(true);
+      };
+    
+      const closeModal = () => {
+        setModalVisible(false);
+        setSelectedAppointment(null);
+      };
     return(
         <Viewazul>
             <Viewtopo>
@@ -30,7 +42,7 @@ export default function Home() {
         <Textobotao>Relatorio de Paciente</Textobotao>
         </Botaoservico>
 
-        <Botaoservico onPress={() => navigation.navigate('Suporte')} >
+        <Botaoservico onPress={() => Linking.openURL('https://wa.me/5561998738838')} >
         <Imagembotao source={require('./img/Suporte2.png')} />
         <Textobotao>Suporte</Textobotao>
         </Botaoservico>
@@ -44,12 +56,12 @@ export default function Home() {
         <Imagembotao source={require('./img/Estagio.png')} />
         <Textobotao>Enviar Ficha de Estagio</Textobotao>
         </Botaoservico>
-
-        <Botaoservico onPress={() => navigation.navigate('Prontuario')}>
+        
+       
+        <Botaoservico onPress={() => setModalVisible(true)}>
         <Imagembotao source={require('./img/Prontuario.png')} />
         <Textobotao>Preencher Prontuario</Textobotao>
         </Botaoservico>
-
         </Viewbotao>
 
 
